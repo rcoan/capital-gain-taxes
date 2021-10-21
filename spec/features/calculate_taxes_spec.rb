@@ -15,7 +15,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":0},{"tax":0}].to_json
     end
 
@@ -33,7 +33,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":10_000},{"tax":0}].to_json
     end
 
@@ -51,7 +51,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":0},{"tax":5_000}].to_json
     end
 
@@ -69,7 +69,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":0}].to_json
     end
 
@@ -88,7 +88,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":0},{"tax":10_000}].to_json
     end
 
@@ -108,7 +108,7 @@ RSpec.describe 'Calculate taxes' do
       ].to_json
     end
 
-    let(expected_response) do
+    let(:expected_response) do
       [{"tax":0},{"tax":0},{"tax":0},{"tax":3_000}].to_json
     end
 
