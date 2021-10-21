@@ -1,10 +1,8 @@
-# frozen_string_literal: true
-
 require 'spec_helper'
 require 'json'
 
 RSpec.describe 'Calculate taxes' do
-  subject { Entrypoint.call }
+  subject { Entrypoint.call(input) }
 
   context 'First input exemple' do
     let(:input) do
