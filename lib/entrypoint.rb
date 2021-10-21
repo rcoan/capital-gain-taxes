@@ -1,9 +1,7 @@
-class Entrypoint
-  def self.call
-    new.call
-  end
+require_relative './../config/loader'
 
-  def call
-    return [{"tax":0},{"tax":0},{"tax":0}].to_json
+class Entrypoint
+  def self.call(parsed_input)
+    ProcessTaxFromProfitInteractor.call(parsed_input)
   end
 end
