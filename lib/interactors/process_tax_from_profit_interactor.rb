@@ -3,10 +3,9 @@ class ProcessTaxFromProfitInteractor
     new.call(*args)
   end
 
-  def call(input_json)
-    # vira um service de parser
-    parsed_input = JSON.parse(input_json)
-    wallet = Wallet.new(operations: parsed_input)
+  def call(operations_json)
+    parsed_operations = JSON.parse(operations_json)
+    wallet = Wallet.new(operations: parsed_operations)
 
     wallet = Wallets::ProcessOperationsTaxService.call(wallet)
 
