@@ -13,12 +13,12 @@ module Wallets
                weighted_average_cost:)
 
         new_total_stocks = total_stocks + quantity
-        current_operation_total_value = unit_cost * quantity
+        operation_total_value = unit_cost * quantity
         total_expended_previously = total_stocks * weighted_average_cost
 
         new_weighted_average = calc_new_weighted_average(
           new_total_stocks,
-          current_operation_total_value,
+          operation_total_value,
           total_expended_previously
         )
 
@@ -28,9 +28,9 @@ module Wallets
       private
 
       def calc_new_weighted_average(new_total_stocks,
-                                    current_operation_total_value,
+                                    operation_total_value,
                                     total_expended_previously)
-        total_expended = total_expended_previously + current_operation_total_value
+        total_expended = total_expended_previously + operation_total_value
 
         total_expended / new_total_stocks
       end
