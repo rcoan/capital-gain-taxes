@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wallets
   class ProcessOperationsTaxService
     def self.call(*args)
@@ -30,7 +32,6 @@ module Wallets
         weighted_average_cost: wallet.weighted_average_cost
       }
     end
-
 
     def filter_sell_operations_params(operation, wallet)
       {

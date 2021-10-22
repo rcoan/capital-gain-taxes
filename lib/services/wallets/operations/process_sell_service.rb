@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Wallets
   module Operations
     class ProcessSellService
@@ -7,13 +9,11 @@ module Wallets
         new.call(**args)
       end
 
-      def call(
-        unit_cost:,
-        quantity:,
-        total_stocks:,
-        weighted_average_cost:,
-        total_profit:
-      )
+      def call(unit_cost:,
+               quantity:,
+               total_stocks:,
+               weighted_average_cost:,
+               total_profit:)
 
         current_operation_total_value = unit_cost * quantity
 
@@ -27,7 +27,6 @@ module Wallets
           unit_cost > weighted_average_cost &&
           current_operation_profit_after_losses.positive?
 
-
         operation_tax = should_tax ? current_operation_profit_after_losses * 0.2 : 0.0
         new_total_stocks = total_stocks - quantity
         new_total_profit = current_operation_profit_after_losses
@@ -38,8 +37,6 @@ module Wallets
           total_profit: new_total_profit
         }
       end
-
-
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProcessTaxFromProfitInteractor
   def self.call(*args)
     new.call(*args)
