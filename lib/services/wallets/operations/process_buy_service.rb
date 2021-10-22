@@ -3,6 +3,8 @@
 module Wallets
   module Operations
     class ProcessBuyService
+      class InvalidBuyQuantityError < StandardError;  end
+
       def self.call(**args)
         new.call(**args)
       end
@@ -12,8 +14,12 @@ module Wallets
                total_stocks:,
                weighted_average_cost:)
 
-        new_total_stocks = total_stocks + quantity
-        operation_total_value = unit_cost * quantity
+        if quantity.zero? || quantity.negative?
+          raise InvalidBuyQuantityError.new('Invalid quantity for buy operation')
+        end
+
+        new_total_stocks = total_stocks.to_f + quantity
+        operation_total_value = unit_cost.to_f * quantity
         total_expended_previously = total_stocks * weighted_average_cost
 
         new_weighted_average = calc_new_weighted_average(

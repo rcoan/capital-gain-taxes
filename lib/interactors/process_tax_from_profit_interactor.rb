@@ -12,5 +12,7 @@ class ProcessTaxFromProfitInteractor
     wallet = Wallets::ProcessOperationsTaxService.call(wallet)
 
     WalletPresenter.new(wallet).json_formatted_taxes
+  rescue StandardError => e
+    return e.message
   end
 end
