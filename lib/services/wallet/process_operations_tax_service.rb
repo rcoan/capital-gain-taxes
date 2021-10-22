@@ -17,7 +17,7 @@ module Wallets
         update_wallet(wallet, result)
       end
 
-      wallet.taxes
+      wallet
     end
 
     private

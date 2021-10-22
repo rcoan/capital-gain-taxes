@@ -12,7 +12,6 @@ module Wallets
         weighted_average_cost:
       )
 
-
       new_total_stocks = total_stocks + quantity
       current_operation_total_value = unit_cost * quantity
       total_expent_previously = total_stocks * weighted_average_cost

@@ -8,9 +8,8 @@ class ProcessTaxFromProfitInteractor
     parsed_input = JSON.parse(input_json)
     wallet = Wallet.new(operations: parsed_input)
 
-    taxes = Wallets::ProcessOperationsTaxService.call(wallet)
+    wallet = Wallets::ProcessOperationsTaxService.call(wallet)
 
-    # vira um service de presenter
-    taxes.map { |tax| {tax: tax} }.to_json
+    WalletPressenter.new(wallet).json_formatted_taxes
   end
 end
