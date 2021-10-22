@@ -10,18 +10,22 @@ module Wallets
           unit_cost: operation['unit-cost'],
           quantity: operation['quantity'],
           total_stocks: wallet.total_stocks,
-          weighted_average: wallet.total_profit
+          weighted_average: wallet.weighted_average
         }
 
-        if operation['operation'] == 'buy'
-          result = Operations::ProcessBuyService.call(operation_values)
-          update_wallet(wallet, result)
-        elsif operation['operation'] == 'sell'
-        end
+        result =
+          case operation['operation']
+          when 'buy'
+            Operations::ProcessBuyService.call(operation_values)
+          when 'sell'
+            Operations::ProcessSellService.call(operation_values.merge(total_profit: wallet.total_profit))
+          end
+
+        update_wallet(wallet, result)
       end
       binding.pry
 
-      wallet
+      wallet.taxes
     end
 
     private
