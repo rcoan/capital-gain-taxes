@@ -10,6 +10,6 @@ class ProcessTaxFromProfitInteractor
 
     wallet = Wallets::ProcessOperationsTaxService.call(wallet)
 
-    WalletPressenter.new(wallet).json_formatted_taxes
+    WalletPresenter.new(wallet).json_formatted_taxes
   end
 end
