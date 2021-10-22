@@ -14,7 +14,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 0 }, { "tax": 0 }].to_json
+      [{ "tax": 0.0 }, { "tax": 0.0 }].to_json
     end
 
     it 'returns all taxes as zero' do
@@ -32,7 +32,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 10_000 }, { "tax": 0 }].to_json
+      [{ "tax": 10_000.0 }, { "tax": 0.0 }].to_json
     end
 
     it 'returns the first tax as 10_000 and the secon zero' do
@@ -50,7 +50,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 0 }, { "tax": 5_000 }].to_json
+      [{ "tax": 0.0 }, { "tax": 5_000.0 }].to_json
     end
 
     it 'returns the first tax as zero and the second as 5_000' do
@@ -68,7 +68,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 0 }].to_json
+      [{ "tax": 0.0 }].to_json
     end
 
     it 'returns the only sell tax as zero' do
@@ -87,7 +87,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 0 }, { "tax": 10_000 }].to_json
+      [{ "tax": 0.0 }, { "tax": 10_000.0 }].to_json
     end
 
     it 'returns the first tax as zero and the second as 10_000' do
@@ -107,7 +107,7 @@ RSpec.describe 'Calculate taxes' do
     end
 
     let(:expected_response) do
-      [{ "tax": 0 }, { "tax": 0 }, { "tax": 0 }, { "tax": 3_000 }].to_json
+      [{ "tax": 0.0 }, { "tax": 0.0 }, { "tax": 0.0 }, { "tax": 3_000.0 }].to_json
     end
 
     it 'returns only the last tax as 3_000 and the rest zero' do

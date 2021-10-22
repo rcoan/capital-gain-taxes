@@ -1,7 +1,7 @@
 module Wallets
   module Operations
     class ProcessSellService
-      OPERATION_PROFIT_TAX_THRESHOLD = 20_000
+      OPERATION_TOTAL_VALUE_TAX_THRESHOLD = 20_000
 
       def self.call(**args)
         new.call(**args)
@@ -17,18 +17,18 @@ module Wallets
 
         current_operation_total_value = unit_cost * quantity
 
-        current_operation_profit = (weighted_average_cost - unit_cost) * quantity
+        current_operation_profit = (unit_cost - weighted_average_cost) * quantity
 
         current_operation_profit_after_losses = total_profit.negative? ? current_operation_profit + total_profit : current_operation_profit
 
         # transform rules in validators
         should_tax =
-          current_operation_profit > OPERATION_PROFIT_TAX_THRESHOLD &&
+          current_operation_total_value > OPERATION_TOTAL_VALUE_TAX_THRESHOLD &&
           unit_cost > weighted_average_cost &&
           current_operation_profit_after_losses.positive?
 
 
-        operation_tax = should_tax ? current_operation_profit_after_losses * 0.2 : 0
+        operation_tax = should_tax ? current_operation_profit_after_losses * 0.2 : 0.0
         new_total_stocks = total_stocks - quantity
         new_total_profit = current_operation_profit_after_losses
 
