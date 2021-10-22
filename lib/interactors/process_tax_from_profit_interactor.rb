@@ -8,7 +8,7 @@ class ProcessTaxFromProfitInteractor
     parsed_input = JSON.parse(input_json)
     wallet =  Wallet.new(operations: parsed_input)
 
-    taxes = Wallets::ProcessOperationsService.call(wallet)
+    taxes = Wallets::ProcessOperationsTaxService.call(wallet)
 
     # vira um service de presenter
     return taxes.to_json
