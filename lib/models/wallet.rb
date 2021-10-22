@@ -13,14 +13,4 @@ class Wallet
     @weighted_average = weighted_average unless weighted_average.nil?
     @total_stocks = total_stocks unless total_stocks.nil?
   end
-
-  def to_s
-    {
-      operations: @operations,
-      total_profit: @total_profit,
-      total_stocks: @total_stocks,
-      weighted_average: @weighted_average,
-      taxes: @taxes
-    }.to_s
-  end
 end
