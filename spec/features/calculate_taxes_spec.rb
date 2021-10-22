@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-RSpec.describe 'Calculate taxes' do
-  subject { Entrypoint.call(input) }
+RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
+  subject { ProcessTaxFromProfitInteractor.call(input) }
 
   context 'with First input exemple' do
     let(:input) do
