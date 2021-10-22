@@ -10,7 +10,7 @@ module Wallets
           unit_cost: operation['unit-cost'],
           quantity: operation['quantity'],
           total_stocks: wallet.total_stocks,
-          weighted_average: wallet.weighted_average
+          weighted_average_cost: wallet.weighted_average_cost
         }
 
         result =
@@ -23,7 +23,6 @@ module Wallets
 
         update_wallet(wallet, result)
       end
-      binding.pry
 
       wallet.taxes
     end

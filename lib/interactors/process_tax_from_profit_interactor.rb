@@ -11,6 +11,6 @@ class ProcessTaxFromProfitInteractor
     taxes = Wallets::ProcessOperationsTaxService.call(wallet)
 
     # vira um service de presenter
-    taxes.to_json
+    taxes.map { |tax| {tax: tax} }.to_json
   end
 end
