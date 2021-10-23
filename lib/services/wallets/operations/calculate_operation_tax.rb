@@ -10,10 +10,10 @@ module Wallets
         new.call(**args)
       end
 
-      def call(profit:,
-        total_value:,
-        unit_cost:,
-        weighted_average_cost:,
+      def call(profit: nil,
+        total_value: nil,
+        unit_cost: nil,
+        weighted_average_cost: nil,
         operation:)
 
         if should_tax?(profit, total_value, unit_cost, weighted_average_cost, operation)
