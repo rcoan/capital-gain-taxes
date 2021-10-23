@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Entrypoint do
+RSpec.describe CapitalGainTaxes::Entrypoint do
   describe '#call' do
     it 'calls the correct interactor for the user case' do
       input = [
