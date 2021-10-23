@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe CapitalGainTaxes::Entrypoint do
-  describe '#call' do
+  describe '#calculate_taxes' do
     it 'calls the correct interactor for the user case' do
       input = [
         { operation: 'buy', 'unit-cost': 10, quantity: 100 },
@@ -14,7 +14,7 @@ RSpec.describe CapitalGainTaxes::Entrypoint do
       allow(ProcessTaxFromProfitInteractor).to receive(:call)
       expect(ProcessTaxFromProfitInteractor).to receive(:call).with(input)
 
-      described_class.call(input)
+      described_class.calculate_taxes(input)
     end
   end
 end
