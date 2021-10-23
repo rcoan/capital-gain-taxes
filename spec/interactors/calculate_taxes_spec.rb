@@ -122,6 +122,7 @@ RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
     context 'When there are new buy and sell operations after selling' do
       let(:input) do
         [
+          { operation: 'buy', 'unit-cost': 40, quantity: 1_000 },
           { operation: 'buy', 'unit-cost': 50, quantity: 1_000 },
           { operation: 'sell', 'unit-cost': 55, quantity: 300 },
           { operation: 'sell', 'unit-cost': 57, quantity: 400 },
@@ -134,11 +135,12 @@ RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
       let(:expected_response) do
         [
           { tax: 0 }, # No tax for buy
+          { tax: 0 }, # No tax for buy
           { tax: 0 }, # No tax for operation below 20k
-          { tax: 560.0 }, # Tax for the 2_800 profit
+          { tax: 960.0 }, # Tax for the 2_800 profit
           { tax: 0 }, # No tax for buy
           { tax: 0 }, # No tax for buy
-          { tax: 11_454.545454545456 } # Tax the 57_272 profit
+          { tax: 9_697.67441860465 } # Tax the 57_272 profit
         ].to_json
       end
 
