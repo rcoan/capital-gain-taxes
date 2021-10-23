@@ -174,21 +174,39 @@ Output:
 
 
 ## Architecture and decisions
+About the code decisions I made and why the patterns I've chosen
+### Interactors
+I use this pattern for some time now, since I read Clean Architecture (Uncle bob),
+it's really similar to the structure of a Service object, but its purpose is a bit different:
+It is used to contain a use case and orchestrate its flow, worrying as little as possible with how
+to implement business rules and focusing on what to do and in what order, letting the Service objects worry about **how**.
 
+This project may be little, with only one use case, but the use of the interactor helps to separate responsibility and domains.
+### Service objects
+Just like the Interactors pattern, the Service Object has been one of my favorites patterns on my tool box.
 
+The objective is to create a class with single responsibility that screams its reason to exist, it also should be stateless.
+Since the Service Object have online one public method, the method **call**, its focused on how to do one thing,
+and do it very well, receiving as much as possible as params.
 
+Very often one service object use others, from the "same level" or below, and acts a bit like an orchestrator and may be similar to the Interactor.
+The difference is the semantics of each. In these cases the service object should be a "How to" to be used in multiple interactors or service objects,
+but the interactor represents a single use case.
+### Presenters
+The purpose of using a presenter in this project is to remove from the interactor the "logic" of how to format
+the response for the user. This helps to make the code cleaner and separate the responsibility,
+since any change on how to show the info should not impact the use case or anything else.
+### Models
+In this case I chose to have a entity to represent the context of multiple operations and its evolution through time.
+The app could be done without it, but the representation of this context may fall into a confusing hash or array that have little meaning
+and difficult the understanding of the purpose of each part of the code.
 
+### Why a ruby and why a gem
+I've been coding in ruby for some years now, so it is the Lang I'm most familiar with, from there
+was easy to make a gem since would be a nice-to-use solution for command line as requested.
+There were many gems I could have used, but I decided to go PORO (plain old ruby objects) since
+everything I needed already exited in ruby core and there was no need to recreate the wheel.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+There is, however, somethings I gave up and tried to recreate from not using Elixir, which is a
+functional Lang that I've some familiarity but decided to go with the safer solution. Things like
+pattern matching and head | tail functionality.
