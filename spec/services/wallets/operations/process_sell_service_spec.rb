@@ -16,19 +16,15 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:5,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 5,
             total_loss: 0
           }
         end
 
         it 'returns total profit of current operation' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 0
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 0 }
 
           expect(subject).to eq(expected_result)
         end
@@ -39,19 +35,15 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:15,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 15,
             total_loss: 0
           }
         end
 
         it 'returns total profit less then it was before' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 50
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 50 }
 
           expect(subject).to eq(expected_result)
         end
@@ -62,19 +54,15 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:10,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 10,
             total_loss: 0
           }
         end
 
         it 'returns total profit zeroed' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 0
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 0 }
 
           expect(subject).to eq(expected_result)
         end
@@ -83,23 +71,20 @@ RSpec.describe Wallets::Operations::ProcessSellService do
 
     context 'when previous operations had loss' do
       let(:tax) { 0 }
+
       context 'when sell has profit' do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:5,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 5,
             total_loss: 100
           }
         end
 
         it 'returns total profit of current operation' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 50
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 50 }
 
           expect(subject).to eq(expected_result)
         end
@@ -109,19 +94,15 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:15,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 15,
             total_loss: 100
           }
         end
 
         it 'returns total profit less then it was before' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 150
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 150 }
 
           expect(subject).to eq(expected_result)
         end
@@ -131,19 +112,15 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:input) do
           {
             unit_cost: 10,
-            quantity:10,
-            total_stocks:10,
-            weighted_average_cost:10,
+            quantity: 10,
+            total_stocks: 10,
+            weighted_average_cost: 10,
             total_loss: 100
           }
         end
 
         it 'returns total profit equal as before' do
-          expected_result = {
-            operation_tax: tax,
-            total_stocks: 0,
-            total_loss: 100
-          }
+          expected_result = { operation_tax: tax, total_stocks: 0, total_loss: 100 }
 
           expect(subject).to eq(expected_result)
         end

@@ -18,12 +18,7 @@ module Wallets
         new_total_stocks = total_stocks - quantity
         operation_total_value = unit_cost * quantity
 
-        operation_profit = calc_profit(
-          total_loss,
-          unit_cost,
-          weighted_average_cost,
-          quantity
-        )
+        operation_profit = calc_profit(total_loss, unit_cost, weighted_average_cost, quantity)
 
         operation_tax = CalculateOperationTax.call(
           profit: operation_profit,
@@ -33,7 +28,7 @@ module Wallets
           operation: 'sell'
         )
 
-        current_loss = operation_profit.negative? ? operation_profit.abs : 0;
+        current_loss = operation_profit.negative? ? operation_profit.abs : 0
 
         format_response(operation_tax, new_total_stocks, current_loss)
       end
