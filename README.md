@@ -90,7 +90,7 @@ docker run -it capital-gain-taxes capital_gain_taxes '[{"operation":"buy", "unit
 Or to connect to the image iteractive terminal and run from there
 ```bash
 docker run -it capital-gain-taxes bash
-> capital_gain_taxes '[{"operation":"buy", "unit-cost":10, "quantity": 10000}, {"operation":"sell",
+capital_gain_taxes '[{"operation":"buy", "unit-cost":10, "quantity": 10000}, {"operation":"sell",
 ```
 
 **IMPORTANT**: Note that in all exemples the input json is passed as a String inside `'' ` in order to parse correctly the json.
