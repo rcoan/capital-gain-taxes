@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby
+puts CapitalGainTaxes::Entrypoint.calculate_taxes(ARGV[0])
