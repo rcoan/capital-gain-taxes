@@ -2,7 +2,7 @@
 
 module Wallets
   module Operations
-    class CalculateOperationtax
+    class CalculateOperationTax
       OPERATION_TOTAL_VALUE_TAX_THRESHOLD = 20_000
       TAX_PERCENTAGE_OVER_PROFIT = 0.2
 

@@ -25,7 +25,7 @@ module Wallets
           quantity
         )
 
-        operation_tax = CalculateOperationtax.call(
+        operation_tax = CalculateOperationTax.call(
           profit: operation_profit,
           total_value: operation_total_value,
           unit_cost: unit_cost,

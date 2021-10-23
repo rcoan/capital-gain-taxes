@@ -28,7 +28,7 @@ module Wallets
           total_expended_previously
         )
 
-        operation_tax = CalculateOperationtax.call(operation: 'buy')
+        operation_tax = CalculateOperationTax.call(operation: 'buy')
 
         format_response(new_total_stocks, new_weighted_average, operation_tax)
       end
