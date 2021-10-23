@@ -54,6 +54,12 @@ e.g.
 
 ## Setup
 There are two ways to setup this project in order to run:
+I recommend using docker.
+### Docker
+If you want to have the commodity of running with docker, all you need to do is run inside the project folder.
+```
+docker build -t capital-gain-taxes .
+```
 ### Native setup
 To run natively in your terminal, you need to install ruby version 2.6.4 or higher.
 Since this is something very documented already, I'm leaving a link with the tutorial on how to: [https://www.ruby-lang.org/en/documentation/installation/](https://www.ruby-lang.org/en/documentation/installation/)
@@ -65,11 +71,6 @@ gem build capital-gain-taxes.gemspec && gem install ./capital-gain-taxes-0.0.1.g
 ```
 
 And then you're good to go.
-### Docker
-If you want to have the commodity of running with docker, all you need to do is run inside the project folder
-```
-docker build -t capital-gain-taxes .
-```
 ## Running
 
 ### Native run
