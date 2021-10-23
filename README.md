@@ -173,7 +173,7 @@ Output:
 ```
 
 
-## Archtecture and decisions
+## Architecture and decisions
 
 
 
