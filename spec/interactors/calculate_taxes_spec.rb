@@ -118,6 +118,58 @@ RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
     end
   end
 
+  context 'With cases not coverage in exercise exemples' do
+    context 'When there are new buy and sell operations after selling' do
+      let(:input) do
+        [
+          { operation: 'buy', 'unit-cost': 50, quantity: 1_000 },
+          { operation: 'sell', 'unit-cost': 55, quantity: 300 },
+          { operation: 'sell', 'unit-cost': 57, quantity: 400 },
+          { operation: 'buy', 'unit-cost': 30, quantity: 2_000 },
+          { operation: 'buy', 'unit-cost': 27, quantity: 1_000 },
+          { operation: 'sell', 'unit-cost': 50, quantity: 3_000 }
+        ].to_json
+      end
+
+      let(:expected_response) do
+        [
+          { tax: 0 }, # No tax for buy
+          { tax: 0 }, # No tax for operation below 20k
+          { tax: 560.0 }, # Tax for the 2_800 profit
+          { tax: 0 }, # No tax for buy
+          { tax: 0 }, # No tax for buy
+          { tax: 11_454.545454545456 } # Tax the 57_272 profit
+        ].to_json
+      end
+
+      it 'returns te expected taxes' do
+        expect(subject).to eq(expected_response)
+      end
+    end
+
+    context 'When the sell has profit but after deducting losses total value goes below 20k' do
+      let(:input) do
+        [
+          { operation: 'buy', 'unit-cost': 100, quantity: 1_000 },
+          { operation: 'sell', 'unit-cost': 80, quantity: 250 },
+          { operation: 'sell', 'unit-cost': 130, quantity: 184 }
+        ].to_json
+      end
+
+      let(:expected_response) do
+        [
+          { tax: 0 }, # No tax for buy
+          { tax: 0 }, # No tax for operation had loss
+          { tax: 104.0 } # Tax the total profi for 520 since it had profit, and previous losses should not affect the operation total
+        ].to_json
+      end
+
+      it 'returns te expected taxes' do
+        expect(subject).to eq(expected_response)
+      end
+    end
+  end
+
   context 'when input is invalid' do
     context 'when  input is nil' do
       let(:input) { nil }
