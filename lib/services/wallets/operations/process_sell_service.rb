@@ -15,46 +15,34 @@ module Wallets
                weighted_average_cost:,
                total_profit:)
 
+        new_total_stocks = total_stocks - quantity
         operation_total_value = unit_cost * quantity
-        operation_profit = (unit_cost - weighted_average_cost) * quantity
-        operation_profit_after_losses = calc_profit(total_profit, operation_profit)
 
-        operation_tax = calc_operation_tax(
-          operation_profit_after_losses,
-          operation_total_value,
+        operation_profit = calc_profit(
+          total_profit,
           unit_cost,
           weighted_average_cost,
+          quantity
         )
 
-        new_total_stocks = total_stocks - quantity
-        new_total_profit = operation_profit_after_losses
+        operation_tax = CalculateOperationtax.call(
+          profit: operation_profit,
+          total_value: operation_total_value,
+          unit_cost: unit_cost,
+          weighted_average_cost: weighted_average_cost,
+          operation: 'sell'
+        )
 
-        format_response(operation_tax, new_total_stocks, new_total_profit)
+        format_response(operation_tax, new_total_stocks, operation_profit)
       end
 
       private
 
-      def calc_profit(total_profit, operation_profit)
+      def calc_profit(total_profit, unit_cost, weighted_average_cost, quantity)
+        operation_profit = (unit_cost - weighted_average_cost) * quantity
         return operation_profit if total_profit.positive?
 
         operation_profit + total_profit
-      end
-
-      def calc_operation_tax(profit, operation_total_value, unit_cost, weighted_average_cost)
-        if should_tax?(operation_total_value, unit_cost, weighted_average_cost, profit)
-          profit * 0.2
-        else
-          0
-        end
-      end
-
-      def should_tax?(operation_total_value,
-                      unit_cost,
-                      weighted_average_cost,
-                      operation_profit_after_losses)
-        operation_total_value > OPERATION_TOTAL_VALUE_TAX_THRESHOLD &&
-          unit_cost > weighted_average_cost &&
-          operation_profit_after_losses.positive?
       end
 
       def format_response(operation_tax, total_stocks, total_profit)
