@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |spec|
-  spec.name          = 'capital-gain-taxex'
+  spec.name          = 'capital-gain-taxes'
   spec.version       = '0.0.1'
   spec.authors       = ['Raul Coan']
   spec.email         = ['rvc.coan@gmail.com']
