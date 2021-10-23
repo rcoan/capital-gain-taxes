@@ -69,5 +69,4 @@ RSpec.describe Wallet do
       end
     end
   end
-
 end

@@ -4,6 +4,7 @@ require 'spec_helper'
 
 RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
   subject { ProcessTaxFromProfitInteractor.call(input) }
+
   context 'With exemple cases from test' do
     context 'with First input exemple' do
       let(:input) do

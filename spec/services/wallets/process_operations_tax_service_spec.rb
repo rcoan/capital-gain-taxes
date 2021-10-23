@@ -4,6 +4,5 @@ require 'spec_helper'
 
 RSpec.describe Wallets::ProcessOperationsTaxService do
   describe '#call' do
-
   end
 end

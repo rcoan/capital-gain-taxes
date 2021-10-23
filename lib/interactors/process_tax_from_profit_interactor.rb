@@ -13,9 +13,9 @@ class ProcessTaxFromProfitInteractor
 
     WalletPresenter.new(wallet).json_formatted_taxes
   rescue JSON::ParserError => e
-    return 'Invalid json string'
+    'Invalid json string'
   rescue StandardError => e
-    return e.message
+    e.message
   end
 
   private
@@ -31,6 +31,6 @@ class ProcessTaxFromProfitInteractor
   end
 
   def raise_invalid_input_error
-    raise StandardError.new('Operations cannot be null or a empty array')
+    raise StandardError, 'Operations cannot be null or a empty array'
   end
 end

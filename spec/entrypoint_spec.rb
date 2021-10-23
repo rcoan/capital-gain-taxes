@@ -11,7 +11,6 @@ RSpec.describe Entrypoint do
         { operation: 'sell', 'unit-cost': 15, quantity: 50 }
       ].to_json
 
-
       allow(ProcessTaxFromProfitInteractor).to receive(:call)
       expect(ProcessTaxFromProfitInteractor).to receive(:call).with(input)
 

@@ -3,7 +3,7 @@
 module Wallets
   module Operations
     class ProcessBuyService
-      class InvalidBuyQuantityError < StandardError;  end
+      class InvalidBuyQuantityError < StandardError; end
 
       def self.call(**args)
         new.call(**args)
@@ -15,7 +15,7 @@ module Wallets
                weighted_average_cost:)
 
         if quantity.zero? || quantity.negative?
-          raise InvalidBuyQuantityError.new('Invalid quantity for buy operation')
+          raise InvalidBuyQuantityError, 'Invalid quantity for buy operation'
         end
 
         new_total_stocks = total_stocks.to_f + quantity
