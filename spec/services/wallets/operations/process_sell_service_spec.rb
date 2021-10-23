@@ -19,7 +19,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:5,
-            total_profit: 0
+            total_loss: 0
           }
         end
 
@@ -27,7 +27,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: 50
+            total_loss: 0
           }
 
           expect(subject).to eq(expected_result)
@@ -42,7 +42,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:15,
-            total_profit: 100
+            total_loss: 0
           }
         end
 
@@ -50,7 +50,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: -50
+            total_loss: 50
           }
 
           expect(subject).to eq(expected_result)
@@ -65,7 +65,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:10,
-            total_profit: 1000
+            total_loss: 0
           }
         end
 
@@ -73,7 +73,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: 0
+            total_loss: 0
           }
 
           expect(subject).to eq(expected_result)
@@ -90,7 +90,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:5,
-            total_profit: -100
+            total_loss: 100
           }
         end
 
@@ -98,7 +98,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: -50
+            total_loss: 50
           }
 
           expect(subject).to eq(expected_result)
@@ -112,7 +112,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:15,
-            total_profit: -100
+            total_loss: 100
           }
         end
 
@@ -120,7 +120,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: -150
+            total_loss: 150
           }
 
           expect(subject).to eq(expected_result)
@@ -134,7 +134,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
             quantity:10,
             total_stocks:10,
             weighted_average_cost:10,
-            total_profit: -100
+            total_loss: 100
           }
         end
 
@@ -142,7 +142,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
           expected_result = {
             operation_tax: tax,
             total_stocks: 0,
-            total_profit: -100
+            total_loss: 100
           }
 
           expect(subject).to eq(expected_result)

@@ -39,7 +39,7 @@ module Wallets
         quantity: operation['quantity'],
         total_stocks: wallet.total_stocks,
         weighted_average_cost: wallet.weighted_average_cost,
-        total_profit: wallet.total_profit
+        total_loss: wallet.total_loss
       }
     end
 

@@ -13,13 +13,13 @@ module Wallets
                quantity:,
                total_stocks:,
                weighted_average_cost:,
-               total_profit:)
+               total_loss:)
 
         new_total_stocks = total_stocks - quantity
         operation_total_value = unit_cost * quantity
 
         operation_profit = calc_profit(
-          total_profit,
+          total_loss,
           unit_cost,
           weighted_average_cost,
           quantity
@@ -33,23 +33,25 @@ module Wallets
           operation: 'sell'
         )
 
-        format_response(operation_tax, new_total_stocks, operation_profit)
+        current_loss = operation_profit.negative? ? operation_profit.abs : 0;
+
+        format_response(operation_tax, new_total_stocks, current_loss)
       end
 
       private
 
-      def calc_profit(total_profit, unit_cost, weighted_average_cost, quantity)
+      def calc_profit(total_loss, unit_cost, weighted_average_cost, quantity)
         operation_profit = (unit_cost - weighted_average_cost) * quantity
-        return operation_profit if total_profit.positive?
+        return operation_profit - total_loss if total_loss.positive?
 
-        operation_profit + total_profit
+        operation_profit
       end
 
-      def format_response(operation_tax, total_stocks, total_profit)
+      def format_response(operation_tax, total_stocks, current_loss)
         {
           operation_tax: operation_tax,
           total_stocks: total_stocks,
-          total_profit: total_profit
+          total_loss: current_loss
         }
       end
     end

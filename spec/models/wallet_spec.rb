@@ -10,8 +10,8 @@ RSpec.describe Wallet do
       expect(subject.weighted_average_cost).to eq(0)
     end
 
-    it 'initializes object with default total_profit' do
-      expect(subject.total_profit).to eq(0)
+    it 'initializes object with default total_loss' do
+      expect(subject.total_loss).to eq(0)
     end
 
     it 'initializes object with default total_stocks' do
@@ -42,10 +42,10 @@ RSpec.describe Wallet do
       end
     end
 
-    context 'when updating only total_profit' do
+    context 'when updating only total_loss' do
       it 'updates the desired field and does not change others' do
-        subject.update(total_profit: 10)
-        expect(subject.total_profit).to eq(10)
+        subject.update(total_loss: 10)
+        expect(subject.total_loss).to eq(10)
       end
     end
 
@@ -61,11 +61,11 @@ RSpec.describe Wallet do
       it 'updates all the desired field and does not change others' do
         subject.update(weighted_average_cost: 10)
         subject.update(total_stocks: 20)
-        subject.update(total_profit: 30)
+        subject.update(total_loss: 30)
 
         expect(subject.weighted_average_cost).to eq(10)
         expect(subject.total_stocks).to eq(20)
-        expect(subject.total_profit).to eq(30)
+        expect(subject.total_loss).to eq(30)
       end
     end
   end
