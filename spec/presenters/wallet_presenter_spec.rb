@@ -7,10 +7,10 @@ RSpec.describe WalletPresenter do
 
   let(:wallet) { Wallet.new(operations: []) }
 
-  describe '#json_formatted_taxes' do
+  describe '#to_json' do
     context 'when no taxes were added' do
       it 'returns an empty array as json' do
-        expect(subject.json_formatted_taxes).to eq([].to_json)
+        expect(subject.to_json).to eq([].to_json)
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe WalletPresenter do
 
         expected_result = [{ tax: 10 }, { tax: 15 }, { tax: 5 }].to_json
 
-        expect(subject.json_formatted_taxes).to eq(expected_result)
+        expect(subject.to_json).to eq(expected_result)
       end
     end
   end

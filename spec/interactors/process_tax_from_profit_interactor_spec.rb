@@ -196,5 +196,27 @@ RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
         expect(subject).to eq('Invalid json string')
       end
     end
+
+    context 'when the operation has invalid fields' do
+      let(:input) do
+        [
+          { operation: '', 'unit-cost': 40, quantity: 1_000 },
+          { operation: 'buy', 'unit-cost': 50, quantity: 1_000 },
+          { operation: 'sell', 'unit-cost': 55, quantity: -1 }
+        ].to_json
+      end
+
+      let(:expected_response) do
+        [
+          ["The operation must be one of the following: [buy, sell]"],
+          [],
+          ["The quantity of an operation must be a non-negative Integer"]
+        ].to_json
+      end
+
+      it 'returns te expected taxes' do
+        expect(subject).to eq(expected_response)
+      end
+    end
   end
 end
