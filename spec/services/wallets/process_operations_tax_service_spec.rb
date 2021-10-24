@@ -17,8 +17,8 @@ RSpec.describe Wallets::ProcessOperationsTaxService do
         total_loss: 0
       }
 
-      buy_operation = { 'operation' => 'buy', 'unit-cost' => 10, 'quantity' => 10 }
-      sell_operation = { 'operation' => 'sell', 'unit-cost' => 10, 'quantity' => 10 }
+      buy_operation = Operation.new(type: 'buy', unit_value: 10, quantity: 10)
+      sell_operation = Operation.new(type: 'sell', unit_value: 10, quantity: 10)
       operations = [buy_operation, sell_operation]
 
       wallet = Wallet.new(operations: operations)

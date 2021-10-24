@@ -20,4 +20,8 @@ class Wallet
     @total_loss = total_loss unless total_loss.nil?
     @taxes.push(operation_tax) unless operation_tax.nil?
   end
+
+  def valid?
+    true
+  end
 end

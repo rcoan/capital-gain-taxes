@@ -189,14 +189,6 @@ RSpec.describe ProcessTaxFromProfitInteractor, 'Calculate taxes' do
       end
     end
 
-    context 'when input is an empty array' do
-      let(:input) { '[]' }
-
-      it 'returns error message' do
-        expect(subject).to eq('Operations cannot be null or a empty array')
-      end
-    end
-
     context 'when input is an invalid json' do
       let(:input) { '["invalid": 1]' }
 

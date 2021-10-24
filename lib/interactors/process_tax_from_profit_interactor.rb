@@ -10,7 +10,7 @@ class ProcessTaxFromProfitInteractor
 
     wallet = Wallet.new(operations: operations_list)
 
-    return wallet.errors if wallet.invalid?
+    return wallet.errors unless wallet.valid?
 
     wallet = Wallets::ProcessOperationsTaxService.call(wallet)
 
