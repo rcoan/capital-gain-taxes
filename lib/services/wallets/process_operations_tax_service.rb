@@ -9,7 +9,7 @@ module Wallets
     def call(wallet)
       wallet.operations.each do |operation|
         result =
-          case operation['operation']
+          case operation.type
           when 'buy'
             Operations::ProcessBuyService.call(filter_buy_operations_params(operation, wallet))
           when 'sell'
@@ -26,8 +26,8 @@ module Wallets
 
     def filter_buy_operations_params(operation, wallet)
       {
-        unit_cost: operation['unit-cost'],
-        quantity: operation['quantity'],
+        unit_cost: operation.unit_value,
+        quantity: operation.quantity,
         total_stocks: wallet.total_stocks,
         weighted_average_cost: wallet.weighted_average_cost
       }
@@ -35,8 +35,8 @@ module Wallets
 
     def filter_sell_operations_params(operation, wallet)
       {
-        unit_cost: operation['unit-cost'],
-        quantity: operation['quantity'],
+        unit_cost: operation.unit_value,
+        quantity: operation.quantity,
         total_stocks: wallet.total_stocks,
         weighted_average_cost: wallet.weighted_average_cost,
         total_loss: wallet.total_loss
