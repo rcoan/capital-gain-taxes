@@ -9,21 +9,21 @@ module Wallets
         new.call(**args)
       end
 
-      def call(unit_cost:,
+      def call(unit_value:,
                quantity:,
                total_stocks:,
                weighted_average_cost:,
                total_loss:)
 
         new_total_stocks = total_stocks - quantity
-        operation_total_value = unit_cost * quantity
+        operation_total_value = unit_value * quantity
 
-        operation_profit = calc_profit(total_loss, unit_cost, weighted_average_cost, quantity)
+        operation_profit = calc_profit(total_loss, unit_value, weighted_average_cost, quantity)
 
         operation_tax = CalculateOperationTax.call(
           profit: operation_profit,
           total_value: operation_total_value,
-          unit_cost: unit_cost,
+          unit_value: unit_value,
           weighted_average_cost: weighted_average_cost,
           operation: 'sell'
         )
@@ -35,8 +35,8 @@ module Wallets
 
       private
 
-      def calc_profit(total_loss, unit_cost, weighted_average_cost, quantity)
-        operation_profit = (unit_cost - weighted_average_cost) * quantity
+      def calc_profit(total_loss, unit_value, weighted_average_cost, quantity)
+        operation_profit = (unit_value - weighted_average_cost) * quantity
         return operation_profit - total_loss if total_loss.positive?
 
         operation_profit

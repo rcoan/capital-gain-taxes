@@ -10,7 +10,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
       {
         profit: profit,
         total_value: total_value,
-        unit_cost: unit_cost,
+        unit_value: unit_value,
         weighted_average_cost: weighted_average_cost,
         operation: operation
       }
@@ -23,7 +23,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { 1000 }
 
             it 'returns the tax as 20% of profit' do
@@ -35,7 +35,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { -100 }
 
             it 'returns the tax as 0 since there was loss' do
@@ -49,7 +49,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { 1000 }
 
             it 'returns the tax as 0 since the sell value was below average' do
@@ -61,7 +61,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { -100 }
 
             it 'returns the tax as 0 since the sell value was below average and there was loss' do
@@ -77,7 +77,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { 1000 }
 
             it 'returns the tax as 0 since the total value was not above 20_000' do
@@ -89,7 +89,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { -100 }
 
             it 'returns the tax as 0 since the total value was not above 20_000 and \
@@ -104,7 +104,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { 1000 }
 
             it 'returns the tax as 0 since the total value was not above 20_000 and \
@@ -117,7 +117,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'sell' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { -100 }
 
             it 'returns the tax as 0 since the total value was not above 20_000 and \
@@ -136,7 +136,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { 1000 }
 
             it 'returns the tax as zero' do
@@ -148,7 +148,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { -100 }
 
             it 'returns the tax as zero' do
@@ -162,7 +162,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { 1000 }
 
             it 'returns the tax as zero' do
@@ -174,7 +174,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 20_001 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { -100 }
 
             it 'returns the tax as zero' do
@@ -190,7 +190,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { 1000 }
 
             it 'returns the tax as zero' do
@@ -202,7 +202,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 25 }
+            let(:unit_value) { 25 }
             let(:profit) { -100 }
 
             it 'returns the tax as zero' do
@@ -216,7 +216,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { 1000 }
 
             it 'returns the tax as zero' do
@@ -228,7 +228,7 @@ RSpec.describe Wallets::Operations::CalculateOperationTax do
             let(:operation) { 'buy' }
             let(:total_value) { 19_999 }
             let(:weighted_average_cost) { 15 }
-            let(:unit_cost) { 10 }
+            let(:unit_value) { 10 }
             let(:profit) { -100 }
 
             it 'returns the tax as zero' do

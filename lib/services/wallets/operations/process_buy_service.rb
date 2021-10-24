@@ -9,7 +9,7 @@ module Wallets
         new.call(**args)
       end
 
-      def call(unit_cost:,
+      def call(unit_value:,
                quantity:,
                total_stocks:,
                weighted_average_cost:)
@@ -19,7 +19,7 @@ module Wallets
         end
 
         new_total_stocks = total_stocks.to_f + quantity
-        operation_total_value = unit_cost.to_f * quantity
+        operation_total_value = unit_value.to_f * quantity
         total_expended_previously = total_stocks * weighted_average_cost
 
         new_weighted_average = calc_new_weighted_average(

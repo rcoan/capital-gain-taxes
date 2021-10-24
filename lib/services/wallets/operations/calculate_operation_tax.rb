@@ -12,10 +12,10 @@ module Wallets
 
       def call(operation:, profit: nil,
                total_value: nil,
-               unit_cost: nil,
+               unit_value: nil,
                weighted_average_cost: nil)
 
-        if should_tax?(profit, total_value, unit_cost, weighted_average_cost, operation)
+        if should_tax?(profit, total_value, unit_value, weighted_average_cost, operation)
           tax_over_profit(profit)
         else
           0
@@ -28,11 +28,11 @@ module Wallets
         profit * TAX_PERCENTAGE_OVER_PROFIT
       end
 
-      def should_tax?(profit, total_value, unit_cost, weighted_average_cost, operation)
+      def should_tax?(profit, total_value, unit_value, weighted_average_cost, operation)
         return false if operation == 'buy'
 
         total_value > OPERATION_TOTAL_VALUE_TAX_THRESHOLD &&
-          unit_cost > weighted_average_cost &&
+          unit_value > weighted_average_cost &&
           profit.positive?
       end
     end

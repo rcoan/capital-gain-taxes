@@ -15,7 +15,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:tax) { 10 }
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 5,
@@ -34,7 +34,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:tax) { 0 }
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 15,
@@ -53,7 +53,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
         let(:tax) { 0 }
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 10,
@@ -75,7 +75,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
       context 'when sell has profit' do
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 5,
@@ -93,7 +93,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
       context 'when sell has loss' do
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 15,
@@ -111,7 +111,7 @@ RSpec.describe Wallets::Operations::ProcessSellService do
       context 'when sell has no loss or profit' do
         let(:input) do
           {
-            unit_cost: 10,
+            unit_value: 10,
             quantity: 10,
             total_stocks: 10,
             weighted_average_cost: 10,

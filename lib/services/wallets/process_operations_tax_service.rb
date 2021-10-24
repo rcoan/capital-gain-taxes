@@ -26,7 +26,7 @@ module Wallets
 
     def filter_buy_operations_params(operation, wallet)
       {
-        unit_cost: operation.unit_value,
+        unit_value: operation.unit_value,
         quantity: operation.quantity,
         total_stocks: wallet.total_stocks,
         weighted_average_cost: wallet.weighted_average_cost
@@ -35,7 +35,7 @@ module Wallets
 
     def filter_sell_operations_params(operation, wallet)
       {
-        unit_cost: operation.unit_value,
+        unit_value: operation.unit_value,
         quantity: operation.quantity,
         total_stocks: wallet.total_stocks,
         weighted_average_cost: wallet.weighted_average_cost,
