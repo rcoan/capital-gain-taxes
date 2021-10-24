@@ -9,21 +9,21 @@
 ## About the project
 This project is the suggested exercise for Nubank's hiring process.
 
-The goal is to calculate how much tax should be paid based on the profit or losses of stock  market investment.
+The goal is to calculate how much tax should be paid based on the profit or losses of the stock market investment.
 
 There are several rules to decide if the operation should be taxed or not. Those rules are:
 - No tax should be paid if the operation is a purchase.
-- No tax should be paid if the stocks were sold with no profit (The price of each unit is equal or less than the weighted average price of purchase)
+- No tax should be paid if the stocks were sold with no profit (The price of each unit is equal to or less than the weighted average price of purchase)
 - No tax should be paid if the operation generates no profit after deducting losses.
 - No tax should be paid if the total amount of the operation falls below $20,000.00
 
 Also, there are some rules to the overall transactions process:
 - To determine the profit or loss you should use the weighted-average price of purchases as a base when selling.
-- If a sell operation result in loss, the loss should be deducted from future profit.
+- If a sell operation results in loss, the loss should be deducted from future profit.
 - The tax is 20% of the profits.
 - There will never be an operation selling more stocks that were bought.
 
-The input expected is a JSON with an array of hashs with the following pattern
+The input expected is a JSON with an array of hashes with the following pattern
 e.g.
 ```json
 [
@@ -53,8 +53,8 @@ e.g.
 ```
 
 ## Setup
-There are two ways to setup this project in order to run:
-I recommend using docker.
+There are two ways to setup this project to run:
+Note: If you have no familiarity of ruby, I recommend using docker.
 ### Docker
 If you want to have the commodity of running with docker, all you need to do is run inside the project folder.
 ```
@@ -93,11 +93,11 @@ docker run -it capital-gain-taxes bash
 capital_gain_taxes '[{"operation":"buy", "unit-cost":10, "quantity": 10000}, {"operation":"sell",
 ```
 
-**IMPORTANT**: Note that in all exemples the input json is passed as a String inside `'' ` in order to parse correctly the json.
+**IMPORTANT**: Note that in all examples the input json is passed as a String inside `'' ` to parse correctly the json.
 
 
-## Exemples
-For the sake of faciliting the use and test, I'm leaving here some exemples given with the exercise.
+## Examples
+For the sake of facilitating the use and test, I'm leaving here some examples given with the exercise.
 
 #### Case 1
 Input:
@@ -200,37 +200,37 @@ Output:
 ## Architecture and decisions
 About the code decisions I made and why the patterns I've chosen
 ### Interactors
-I use this pattern for some time now, since I read Clean Architecture (Uncle bob),
-it's really similar to the structure of a Service object, but its purpose is a bit different:
-It is used to contain a use case and orchestrate its flow, worrying as little as possible with how
-to implement business rules and focusing on what to do and in what order, letting the Service objects worry about **how**.
+I use this pattern for some time now, since I read Clean Architecture (Uncle Bob),
+it's similar to the structure of a Service object, but its purpose is a bit different:
+It is used to contain a use case and orchestrate its flow, worrying as little as possible about how
+to implement business rules and focus on what to do and in what order, letting the Service objects worry about **how**.
 
 This project may be little, with only one use case, but the use of the interactor helps to separate responsibility and domains.
 ### Service objects
-Just like the Interactors pattern, the Service Object has been one of my favorites patterns on my tool box.
+Just like the Interactors pattern, the Service Object has been one of my favorite patterns on my toolbox.
 
 The objective is to create a class with single responsibility that screams its reason to exist, it also should be stateless.
-Since the Service Object have online one public method, the method **call**, its focused on how to do one thing,
+Since the Service Object have online one public method, the method **call**, it's focused on how to do one thing,
 and do it very well, receiving as much as possible as params.
 
-Very often one service object use others, from the "same level" or below, and acts a bit like an orchestrator and may be similar to the Interactor.
-The difference is the semantics of each. In these cases the service object should be a "How to" to be used in multiple interactors or service objects,
-but the interactor represents a single use case.
+Very often one service object uses others, from the "same level" or below, and acts a bit like an orchestrator and may be similar to the Interactor.
+The difference is the semantics of each. In these cases, the service object should be a "How to" to be used in multiple interactors or service objects,
+but the interactor represents a single-use case.
 ### Presenters
 The purpose of using a presenter in this project is to remove from the interactor the "logic" of how to format
 the response for the user. This helps to make the code cleaner and separate the responsibility,
 since any change on how to show the info should not impact the use case or anything else.
 ### Models
-In this case I chose to have a entity to represent the context of multiple operations and its evolution through time.
-The app could be done without it, but the representation of this context may fall into a confusing hash or array that have little meaning
-and difficult the understanding of the purpose of each part of the code.
+In this case, I chose to have an entity to represent the context of multiple operations and their evolution through time.
+The app could be done without it, but the representation of this context may fall into a confusing hash or array that has little meaning
+and difficult understanding of the purpose of each part of the code.
 
 ### Why a ruby and why a gem
-I've been coding in ruby for some years now, so it is the Lang I'm most familiar with, from there
-was easy to make a gem since would be a nice-to-use solution for command line as requested.
+I've been coding in Ruby for some years now, so it is the Lang I'm most familiar with, from there
+was easy to make a gem since would be a nice-to-use solution for the command line as requested.
 There were many gems I could have used, but I decided to go PORO (plain old ruby objects) since
 everything I needed already exited in ruby core and there was no need to recreate the wheel.
 
-There is, however, somethings I gave up and tried to recreate from not using Elixir, which is a
-functional Lang that I've some familiarity but decided to go with the safer solution. Things like
+There are, however, some things I gave up and tried to recreate from not using Elixir, which is a
+functional Lang that I've some familiarity with but decided to go with the safer solution. Things like
 pattern matching and head | tail functionality.
