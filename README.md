@@ -225,6 +225,21 @@ In this case, I chose to have an entity to represent the context of multiple ope
 The app could be done without it, but the representation of this context may fall into a confusing hash or array that has little meaning
 and difficult understanding of the purpose of each part of the code.
 
+### Validations
+I think it is also important to mention that I deliberately decided to not implement any kind of validation for the input other than
+if it is a valid JSON.
+
+The main reason is that this piece of code trust some premises such as the one mentioned in the exercise description:
+"There will never be an operation selling more stocks than were bought". I've also extended it to the operations array and its content.
+The other reason is that there aren't any concrete specifications of other rules.
+
+Nevertheless, if needed I would create a representation for the **operation** structure and add validations to its creation, as well as some kind of adapter to translate the JSON input o an array of operation instances. Some validations that could fit this are:
+- The fields `unit-cost`, `quantity` and `operation` must be present.
+- Unit-cost must not be negative.
+- Quantity must be 1 or more.
+- The operation must only be `buy` or `sell`
+- The sell quantity is not bigger than the current stocks' quantity, even if the premise is that wouldn't happen.
+
 ### Why a ruby and why a gem
 I've been coding in Ruby for some years now, so it is the Lang I'm most familiar with, from there
 was easy to make a gem since would be a nice-to-use solution for the command line as requested.
