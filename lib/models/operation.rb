@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Operation
-  attr_reader :type, :value, :quantity, :errors
+  attr_reader :type, :unit_value, :quantity, :errors
   ACCEPTED_OPERATION_TYPES = ['buy', 'sell']
 
-  def initialize(type:, value:, quantity:)
+  def initialize(type:, unit_value:, quantity:)
     @type = type
-    @value = value.to_f
+    @unit_value = unit_value.to_f
     @quantity = quantity.to_i
   end
 
@@ -17,8 +17,8 @@ class Operation
       errors << "The operation must be one of the following: #{ACCEPTED_OPERATION_TYPE}"
     end
 
-    if value.negative?
-      errors << "The value of an operation must not be negative"
+    if unit_value.negative?
+      errors << "The unit value of an operation must not be negative"
     end
 
     if quantity < 1

@@ -13,7 +13,7 @@ module Wallets
         parsed_operations.map do |parsed_operation|
           Operation.new(
             type: parsed_operation['operation'],
-            value: parsed_operation['unit-cost'],
+            unit_value: parsed_operation['unit-cost'],
             quantity: parsed_operation['quantity']
           )
         end
