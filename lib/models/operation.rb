@@ -6,26 +6,26 @@ class Operation
 
   def initialize(type:, unit_value:, quantity:)
     @type = type
-    @unit_value = unit_value.to_f
-    @quantity = quantity.to_i
+    @unit_value = unit_value
+    @quantity = quantity
   end
 
   def valid?
-    errors = []
+    @errors = []
 
     if ACCEPTED_OPERATION_TYPES.none?(type)
-      errors << "The operation must be one of the following: #{ACCEPTED_OPERATION_TYPE}"
+      @errors.push("The operation must be one of the following: #{ACCEPTED_OPERATION_TYPES}")
     end
 
-    if unit_value.negative?
-      errors << "The unit value of an operation must not be negative"
+    if unit_value.nil? || unit_value.negative?
+      @errors.push("The unit value of an operation must not be negative")
     end
 
-    if quantity.negative?
-      errors << "The quantity of an operation must be a non-negative number"
+    if quantity.nil? || quantity.negative? || !quantity.integer?
+      @errors.push("The quantity of an operation must be a non-negative Integer")
     end
 
-    errors.size.positive?
+    @errors.size.zero?
   end
 end
 
