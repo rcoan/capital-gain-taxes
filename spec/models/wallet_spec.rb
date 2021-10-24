@@ -104,7 +104,7 @@ RSpec.describe Wallet do
         subject.valid?
         expect(subject.errors).to eq(
           [
-            ["The operation must be one of the following: [\"buy\", \"sell\"]"],
+            ["The operation must be one of the following: [buy, sell]"],
             ["The unit value of an operation must not be negative"]
           ]
         )

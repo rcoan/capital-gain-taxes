@@ -32,7 +32,7 @@ RSpec.describe Operation do
 
       it 'returns error as an array with correct error' do
         subject.valid?
-        expect(subject.errors).to eq(["The operation must be one of the following: [\"buy\", \"sell\"]"])
+        expect(subject.errors).to eq(["The operation must be one of the following: [buy, sell]"])
       end
     end
 

@@ -23,11 +23,10 @@ class Wallet
 
   def valid?
     @errors = []
-    invalid_operations = operations.reject(&:valid?)
 
-    return true if invalid_operations.empty?
+    return true if operations.reject(&:valid?).empty?
 
-    invalid_operations.each do |operation|
+    operations.each do |operation|
       @errors.push(operation.errors)
     end
 

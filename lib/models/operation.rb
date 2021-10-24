@@ -14,7 +14,9 @@ class Operation
     @errors = []
 
     if ACCEPTED_OPERATION_TYPES.none?(type)
-      @errors.push("The operation must be one of the following: #{ACCEPTED_OPERATION_TYPES}")
+      @errors.push(
+        "The operation must be one of the following: #{ACCEPTED_OPERATION_TYPES}".gsub('"', '')
+      )
     end
 
     if unit_value.nil? || unit_value.negative?
