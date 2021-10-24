@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Wallet
-  attr_reader :weighted_average_cost, :total_stocks, :total_loss, :operations, :taxes
+  attr_reader :weighted_average_cost, :total_stocks, :total_loss, :operations, :taxes, :errors
 
   def initialize(operations:)
     @weighted_average_cost = 0
@@ -22,6 +22,15 @@ class Wallet
   end
 
   def valid?
-    true
+    errors = []
+    invalid_operations = operations.reject(&:valid?)
+
+    return true if invalid_operations.empty?
+
+    invalid_operations.each do |operation|
+      errors.push(operation.errors)
+    end
+
+    false
   end
 end

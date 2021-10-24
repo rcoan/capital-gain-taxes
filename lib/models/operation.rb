@@ -21,8 +21,8 @@ class Operation
       errors << "The unit value of an operation must not be negative"
     end
 
-    if quantity < 1
-      errors << "The quantity of an operation must bigger than 1"
+    if quantity.negative?
+      errors << "The quantity of an operation must be a non-negative number"
     end
 
     errors.size.positive?
