@@ -166,7 +166,7 @@ Output:
 #### Case Bonus 1
 Input:
 ```
-'[ { "operation": 'buy', "unit-cost": 100, "quantity": 1_000 }, { "operation": 'sell', "unit-cost": 80, "quantity": 250 }, { "operation": 'sell', "unit-cost": 130, "quantity": 184 } ]'
+'[ { "operation": "buy", "unit-cost": 100, "quantity": 1000 }, { "operation": "sell", "unit-cost": 80, "quantity": 250 }, { "operation": "sell", "unit-cost": 130, "quantity": 184 } ]'
 ```
 
 Output:
@@ -181,7 +181,7 @@ Output:
 #### Case Bonus 2
 Input:
 ```
-[ { "operation": 'buy', "unit-cost": 50, "quantity": 1_000 }, { "operation": 'sell', "unit-cost": 55, "quantity": 300 }, { "operation": 'sell', "unit-cost": 57, "quantity": 400 }, { "operation": 'buy', "unit-cost": 30, "quantity": 2_000 }, { "operation": 'buy', "unit-cost": 27, "quantity": 1_000 }, { "operation": 'sell', "unit-cost": 50, "quantity": 3_000 } ]
+'[ { "operation": "buy", "unit-cost": 50, "quantity": 1000 }, { "operation": "sell", "unit-cost": 55, "quantity": 300 }, { "operation": "sell", "unit-cost": 57, "quantity": 400 }, { "operation": "buy", "unit-cost": 30, "quantity": 2000 }, { "operation": "buy", "unit-cost": 27, "quantity": 1000 }, { "operation": "sell", "unit-cost": 50, "quantity": 3000 } ]'
 ```
 
 Output:
