@@ -3,8 +3,8 @@
 Gem::Specification.new do |spec|
   spec.name          = 'capital-gain-taxes'
   spec.version       = '0.0.1'
-  spec.authors       = ['Raul Coan']
-  spec.email         = ['rvc.coan@gmail.com']
+  spec.authors       = ['']
+  spec.email         = ['']
   spec.platform  = Gem::Platform::RUBY
 
   spec.summary = 'This gem calculates the amoun of taxes paid for each sell operation'
